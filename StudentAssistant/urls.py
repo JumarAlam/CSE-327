@@ -20,6 +20,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='landing'),
-    path('suggestion', views.suggestion, name = 'suggested courses')
+    path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
 
 ]
