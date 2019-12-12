@@ -40,3 +40,55 @@ class Student(models.Model):
             self.cgpa = 0
         self.total_credits= total_credit
         self.save()
+
+    def updatecatcgpa(self, set):
+        cred = 0
+        m = 0
+
+        gr = Grades.objects.filter(Student_id = self.uni_id)
+        for g in gr:
+            if g.grade != 'N':
+
+                cr = Courses.objects.get(coursename=g.Course_name)
+                if cr.category == set:
+                    cred = cred + cr.credits
+                    m = m + g.grdpa * cr.credits
+        if set == 'SEPS':
+            if cred != 0:
+                self.sepscgpa = m / cred
+            else:
+                self.sepscgpa = 0
+        elif set == 'UNI':
+            if cred != 0:
+                self.unicgpa = m / cred
+            else:
+                self.unicgpa = 0
+
+        elif set == 'CORE':
+            if cred != 0:
+                self.corecgpa = m / cred
+            else:
+                self.corecgpa = 0
+
+        else:
+            print('Something went Wrong')
+
+        self.save()
+
+
+
+	def getsemnumber(self):
+        try:
+            grd = Grades.objects.filter(Student_id=self.uni_id).aggregate(Max('semnum'))
+            self.semunmber = grd["semnum__max"] + 1
+        except e:
+            self.semunmber = 0 + 1    
+        print(self.semunmber)
+        self.save()
+        
+
+
+    def __str__(self):
+        return self.fullname
+
+
