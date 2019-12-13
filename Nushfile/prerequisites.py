@@ -2,16 +2,16 @@ from pyknow import *
 import pyknow.fact
 
 class Prereq(KnowledgeEngine):
-	'''
-	Knowledge Engine for prerequisites Checking
-	
-	Args: 
-	S --> list of Suggested courses
-	CSEcore --> list of Suggested courses in CSE core courses
-	SEPScore --> list of Suggested courses in School of Engineering and Physical Sciences core courses
-	UNIcore --> list of Suggested courses in University core courses
+    '''
+    Knowledge Engine for prerequisites Checking
 
-	'''
+    Args: 
+    S --> list of Suggested courses
+    CSEcore --> list of Suggested courses in CSE core courses
+    SEPScore --> list of Suggested courses in School of Engineering and Physical Sciences core courses
+    UNIcore --> list of Suggested courses in University core courses
+
+    '''
     s=[]
     CSEcore = []
     SEPScore =[]

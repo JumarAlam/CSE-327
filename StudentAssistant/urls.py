@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views  import StudentAssistant as sa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='landing'),
-    path('suggestion', views.suggestion, name = 'suggested courses')
+    path('', sa.index, name='landing'),
+    path('suggestion/', sa.courseadvise, name = 'suggested courses')
 
 ]
