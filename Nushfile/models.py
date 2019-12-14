@@ -7,3 +7,6 @@ class Student(models.Model):
 
 class Courses(models.Model):
 	pass
+
+class Grades(models.Model):
+	pass

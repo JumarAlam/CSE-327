@@ -1,5 +1,8 @@
 from pyknow import *
 
+'''
+Knowledge base for selecting how many courses a student can take.
+'''
 class Numofcrs(KnowledgeEngine):
     i=0
     maxcourse=15
@@ -17,13 +20,14 @@ class Numofcrs(KnowledgeEngine):
 
 
 
-
+    #Returns number of maximum credits
     def numbcrs(self):
         return self.maxcourse
 
 
 
-
+'''
+Driver file 
 if __name__ == '__main__':
     engine = Numofcrs()
     engine.reset()
@@ -33,3 +37,4 @@ if __name__ == '__main__':
 
     engine.run()
     print(engine.numbcrs())
+'''

@@ -11,6 +11,7 @@ from .numofcourses import Numofcrs
 import math
 '''
 generates Views
+every method takes a http request object as an argument
 
 
 '''
@@ -125,3 +126,25 @@ class StudentAssistant:
 
 
         return render(request, "courseadvisor.html", {'suggested': n,'totcred':cfts,'dat': l, 'csecore': sorted(cse), 'sepscore': sorted(seps), 'unicore': sorted(uni)})
+
+    '''
+    Shows full Graduation path as from the point of a students current situation
+
+    '''
+
+    def showgradpath(request):
+        if request.session.has_key("uni_id"):
+            lst = []
+            i=1
+            stdid = request.session['uni_id']
+            std = Student.objects.get(uni_id= stdid )
+            grdobj = Grades.objects.filter(Student_id=stdid)
+            for grd in grdobj:
+                c = Courses.objects.get(coursename= grd.Course_name)
+                lst.append([c.credits,grd.Course_name,grd.grade])
+                i=i+1
+            obj = Gradepath(lst,std.total_credits)
+            d = obj.returncoursepath()
+            print(d)
+
+            return render(request,'coursepath.html',{'data':d})
