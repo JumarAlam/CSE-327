@@ -1,3 +1,11 @@
+class LoginForm(forms.Form):
+    user_id = forms.IntegerField(
+        widget=forms.TextInput(attrs={'type':'int', 'class': "form-control", 'placeholder': 'University ID'}),
+        label="University ID")
+    password = forms.CharField(max_length=50, widget=forms.TextInput(
+        attrs={'type': 'password', 'class': "form-control", 'placeholder': 'password'}))
+
+
 class gradeForm(forms.Form):
 
     c = [('1','A'),('2','A-'),('3','B+'),('4','B'),('5','B-'),('6','C+'),('7','C'),('8','C-'),('10','D+'),('9','D') ]
