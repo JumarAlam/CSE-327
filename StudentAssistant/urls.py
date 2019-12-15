@@ -1,4 +1,4 @@
-"""StudentAssistant URL Configuration
+"""v1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,13 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from .views import Studentasist as sa
 from django.urls import path
-from . import views
+
+''' routing '''
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='landing'),
-    path('complain', views.complain, name = 'complain'),
-    path('retakes', views.retake, name = 'retake')
+    path('', sa.index, name="index" ),
+   
+    path('retakes/', sa.retakelist, name= 'retake list'),
 
+    path('complain/', sa.complain, name='complain box'),
+    path('complainaction/', sa.complainActionListener, name='complain box Action Listener'),
+   
 ]
