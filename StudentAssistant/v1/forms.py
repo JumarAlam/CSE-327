@@ -15,9 +15,15 @@ class gradeForm(forms.Form):
 
 
 
-class lostAndFoundForm(forms.Form):
-    fullName = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':"form-control"}),label='Full Name')
-	itemName = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':"form-control"}),label='Item Name')
-	details = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':"form-control"}),label='Details')
+
+class LostForm(forms.Form):
+    item = [('1', 'ID_Card'), ('2', 'Pen-Drive'), ('3','others')]
+    itemtype = forms.ChoiceField(choices=item, label='Item' ,widget=forms.Select(attrs={'class':"form-control",'placeholder':'Item'}))
+    loser_name = forms.CharField( label='Name(if available)' ,widget=forms.Select(attrs={'class':"form-control",'placeholder':'Name'}))
+    loser_id = forms.CharField( label='Id(if available)' ,widget=forms.Select(attrs={'class':"form-control",'placeholder':'ID'}))
+    description = forms.CharField(max_length=1000, widget=forms.TextInput(attrs={'class':"form-control"}), label='Comment')
     contactInfo = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':"form-control"}),label='Contact Number')
+
+
+
 
