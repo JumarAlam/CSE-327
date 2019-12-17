@@ -9,14 +9,23 @@ import math
 
 
 class Studentasist:
+    ''' takes you to landing page views function
+    '''
 
     def index(request):
         return render(request, 'welcome.html')
         #creating inference engine of pre req
 
+        ''' complain box requests forms and views.
+        '''
+
     def complain(request):
         form = ComplaintForm()  #generating form from forms.py
         return render(request, 'complain.html', {'form': form}) 
+        
+        '''
+            get form and send the redirects to complain page
+        '''
 
     def complainActionListener(request):
     	form = ComplaintForm(request.POST)  #CF class from form file
@@ -28,7 +37,9 @@ class Studentasist:
     		complainObject = ComplainBox(Complaining_person=fullname, Complainer_email= email, message=comment)
     		complainObject.save()
     	return HttpResponseRedirect('/complain')
-
+    '''
+    extract the retake list from retakes inference engine and
+    '''
    
     def retakelist(request):
         if request.session.has_key("uni_id"):  #session check
@@ -49,7 +60,6 @@ class Studentasist:
                 s.append(d)
             l.clear()
 
-            # needs to do grade analyse here and checking current situations
             return render(request,'retakes.html' ,{'retakables':s})
 
    
