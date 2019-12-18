@@ -6,6 +6,11 @@ and a student must have to maintain a specific CGPA in these category in the end
 
 '''
 class Student(models.Model):
+	"""Student class
+	Attributes: uni_id, fullname, email, password, cgpa, total_credits, sepscgpa, unicgpa, semnumber
+
+	Functions: updatecgpa, updatecatcgpa, getsemnumber
+	"""
     uni_id = models.IntegerField(unique=True, primary_key=True)
     fullname = models.CharField(max_length=30)
     email = models.CharField(max_length=30)
@@ -24,6 +29,12 @@ class Student(models.Model):
 
 
     def updatecgpa(self):
+	"""
+	This function will update cgpa in generic way.
+	
+	Return: 
+		Updates the CGPA in Database.
+	"""
         total_credit = 0
         m = 0
 
@@ -42,6 +53,12 @@ class Student(models.Model):
         self.save()
 
     def updatecatcgpa(self, set):
+	"""
+	This function will update cgpa in SEPS, CORE and University category.
+	
+	Return: 
+		Updates the CGPA in Database.
+	"""
         cred = 0
         m = 0
 
@@ -78,6 +95,9 @@ class Student(models.Model):
 
 
 	def getsemnumber(self):
+	"""
+	This function gets semester number.
+	"""
         try:
             grd = Grades.objects.filter(Student_id=self.uni_id).aggregate(Max('semnum'))
             self.semunmber = grd["semnum__max"] + 1
