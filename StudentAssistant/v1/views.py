@@ -80,3 +80,11 @@ class Studentasist:
             stddata.getsemnumber()
             context = {"stinfo": stddata}
             return render(request, 'profile.html', context)
+        
+    
+    def logout(request):
+        try:
+            del request.session['uni_id']
+        except:
+            return HttpResponse("<h1> Could not logout for some reason</h1>")
+        return HttpResponseRedirect('/login')
