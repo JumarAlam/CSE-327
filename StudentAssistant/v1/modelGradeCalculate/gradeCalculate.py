@@ -6,7 +6,8 @@ and a student must have to maintain a specific CGPA in these category in the end
 
 '''
 class Student(models.Model):
-	"""Student class
+	"""
+	Student class
 	Attributes: uni_id, fullname, email, password, cgpa, total_credits, sepscgpa, unicgpa, semnumber
 
 	Functions: updatecgpa, updatecatcgpa, getsemnumber
@@ -21,12 +22,7 @@ class Student(models.Model):
     corecgpa = models.FloatField(default=0.0)
     unicgpa = models.FloatField(default=0.0)
     semunmber = models.IntegerField(default=0)
-    '''credits = models.IntegerField(default=0)
-    software = models.IntegerField(default=0)
-    hardware = models.IntegerField(default=0)
-    math = models.IntegerField(default=0)
-    literature = models.IntegerField(default=0)'''
-
+    
 
     def updatecgpa(self):
 	"""
