@@ -88,3 +88,24 @@ class Studentasist:
         except:
             return HttpResponse("<h1> Could not logout for some reason</h1>")
         return HttpResponseRedirect('/login')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ### faculty evaluation
+
+    def eval(request):
+        if request.session.has_key('uni_id'):
+            uid = request.session['uni_id']
+            studentObject  = Student.objects.get(uni_id= uid)
+            form = Evaluation()
+
+            return render(request, 'eval.html', {'form': form})
+        else:
+            return HttpResponse('<h1>login required</h1>')
+
