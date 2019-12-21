@@ -20,22 +20,62 @@ every method takes a http request object as an argument
 
 class StudentAssistant:
 
+	def gradecal(request): # Added by Jumar 
+        if request.session.has_key('uni_id'):
+            form = GradeForm()
+            return render(request,"gradecalculate.html", {'form':form})
+        else:
+            return HttpResponseRedirect('/login')
+	
+	#updates the grades of students
+    #calculates cgpa
 
+    def gradecalaction(request):
+        grdparam = {'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7, 'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0, 'F': 0.0}
+        converter = {'1':'A','2':'A-','3':'B+','4':'B','5':'B-','6':'C+','7':'C','8':'C-','9':'D+', '10':'D' }
+        if request.session.has_key('uni_id'):
+            uid = request.session['uni_id']
+            form = GradeForm(request.POST)
+            if form.is_valid():
+                crsname= form.cleaned_data['coursename']
+                crsgrade = form.cleaned_data['coursegrade']
+                sem = form.cleaned_data['semester']
+                crsgrade = converter[crsgrade]
+                grdobj = Grades.objects.get(Student_id=uid, Course_name=crsname)
+                grdobj.grdpa=grdparam[crsgrade]
+                grdobj.grade = crsgrade
+                grdobj.semnum = sem
+                grdobj.save()
+                std = Student.objects.get(uni_id= uid)
+
+                std.updatecgpa()
+                std.updatecatcgpa('SEPS')
+                std.updatecatcgpa('UNI')
+                std.updatecatcgpa('CORE')
+                #cgpa update
+
+                return HttpResponseRedirect('/gradecal')
+
+	# added by Jumar upto this
+
+
+
+
+    def index(request):
     '''
     this will Render the home page
 
     return : render object , welcome.html
     '''
-    def index(request):
         return HttpResponse("<h1>This thing is working properly</h1>")
 
 
     #generates facts & creates inference engine of prerequisites
-    '''
+   
+    def courseadvise(request):
+ 	'''
     return : render object, courseadvisor.html
     '''
-    def courseadvise(request):
-
         if request.session.has_key('uni_id'):
             l=[]  #list of courses he can take
             l.clear()
@@ -134,14 +174,15 @@ class StudentAssistant:
 
         return render(request, "courseadvisor.html", {'suggested': n,'totcred':cfts,'dat': l, 'csecore': sorted(cse), 'sepscore': sorted(seps), 'unicore': sorted(uni)})
 
+
+
+    def showgradpath(request):
     '''
     Shows full Graduation path as from the point of a students current situation
 
     return: render type, coursepath.html
 
     '''
-
-    def showgradpath(request):
         if request.session.has_key("uni_id"):
             lst = []
             i=1
