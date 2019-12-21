@@ -21,12 +21,19 @@ every method takes a http request object as an argument
 class StudentAssistant:
 
 
+    '''
+    this will Render the home page
 
+    return : render object , welcome.html
+    '''
     def index(request):
         return HttpResponse("<h1>This thing is working properly</h1>")
+
+
     #generates facts & creates inference engine of prerequisites
-
-
+    '''
+    return : render object, courseadvisor.html
+    '''
     def courseadvise(request):
 
         if request.session.has_key('uni_id'):
@@ -129,6 +136,8 @@ class StudentAssistant:
 
     '''
     Shows full Graduation path as from the point of a students current situation
+
+    return: render type, coursepath.html
 
     '''
 
