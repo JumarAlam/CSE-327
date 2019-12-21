@@ -6,6 +6,7 @@ and a student must have to maintain a specific CGPA in these category in the end
 model is the interface student is the child class
 '''
 
+
 class Student(models.Model):
     uni_id = models.IntegerField(unique=True, primary_key=True)
     fullname = models.CharField(max_length=30)
@@ -17,16 +18,18 @@ class Student(models.Model):
     corecgpa = models.FloatField(default=0.0)
     unicgpa = models.FloatField(default=0.0)
     semunmber = models.IntegerField(default=0)
+
+
 class Courses (models.Model):
     pass
 
- '''
-    
- '''   
+
+'''
+'''
+
 
 class ComplainBox(models.Model):
-    Complain_number = models.AutoField(unique=True, primary_key= True)
+    Complain_number = models.AutoField(unique=True, primary_key=True)
     Complaining_person = models.CharField(max_length=30)
-    Complainer_email = models.CharField(max_length= 40)
-    message = models.CharField(max_length= 300)
-
+    Complainer_email = models.CharField(max_length=40)
+    message = models.CharField(max_length=300)
