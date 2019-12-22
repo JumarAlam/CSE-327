@@ -165,15 +165,4 @@ class Studentasist:
             else:
                 return HttpResponse('<h1> Not working</h1>')
                         
-'''
-class EvaluationScripts(models.Model):
-    faculty_name = models.CharField(max_length= 200)
-    option1_input = models.CharField(max_length= 10)
-    option2_input = models.CharField(max_length= 10)
-    option3_input = models.CharField(max_length= 10)
-    option4_input = models.CharField(max_length= 10)
-    option5_input = models.CharField(max_length= 10)
-    option6_input = models.CharField(max_length= 10)
-    comment = models.CharField(max_length= 1000)
-    submitter_id = models.IntegerField()
-'''
+
