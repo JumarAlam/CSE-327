@@ -20,9 +20,6 @@ from .views  import StudentAssistant as sa
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sa.index, name='landing'),
-    path('suggestion/', sa.courseadvise, name = 'suggested courses'),
-    path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
-	path('lostnfound/', sa.lostnfound, name='lost and found action'), #views are not added...
-    path('gradpath/', sa.showgradpath, name='shows Full graduation Path')
-]
+    path('suggestion/', sa.courseadvise, name = 'suggested courses')
 
+]
