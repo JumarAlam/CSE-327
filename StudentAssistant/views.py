@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-#from .forms import *
+from .forms import *
 from .models import *
 from django.http import HttpResponse,HttpResponseRedirect
 from pyknow import *
@@ -25,7 +25,7 @@ class StudentAssistant:
     #updates the grades of students
     #calculates cgpa
 
-    def gradecalaction(request):
+    def gradecalaction(request):    #Added By Jumar
         grdparam = {'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7, 'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0, 'F': 0.0}
         converter = {'1':'A','2':'A-','3':'B+','4':'B','5':'B-','6':'C+','7':'C','8':'C-','9':'D+', '10':'D' }
         if request.session.has_key('uni_id'):
@@ -53,22 +53,15 @@ class StudentAssistant:
 
     # added by Jumar upto this
 
-
-
-
+    ###############################################################################################       
     def index(request):
+
         '''
         this will Render the home page
 
         return : render object , welcome.html
         '''
-        return HttpResponse("<h1>This thing is working properly</h1>")
 
-
-    #generates facts & creates inference engine of prerequisites
-   
-           
-    def index(request):
         return render(request, 'welcome.html')
         #return render(request, "login/login.html")
 
@@ -115,6 +108,12 @@ class StudentAssistant:
             return HttpResponseRedirect('/login')
             
     def profile(request):
+
+        '''
+        Loads profile and student Information
+
+        Return: Render Object, renders profile.html
+        '''
         if request.session.has_key("uni_id"):
             stdid = request.session['uni_id']
             stddata = Student.objects.get(uni_id= stdid)
@@ -126,12 +125,22 @@ class StudentAssistant:
             return render(request, 'profile.html', context)
     
     def logout(request):
+
+        '''
+
+        Deletes the session for the Student User
+
+        Return: Ridirects to login.html
+
+
+        '''
         try:
             del request.session['uni_id']
         except:
             return HttpResponse("<h1> Could not logout for some reason</h1>")
         return HttpResponseRedirect('/login')
     
+    ################################################################################################
     
     ### faculty evaluation
 
@@ -184,7 +193,7 @@ class StudentAssistant:
             else:
                 return HttpResponse('<h1> Not working</h1>')
 
-
+    #generates facts & creates inference engine of prerequisites
     def courseadvise(request):
         '''
         return : render object, courseadvisor.html
@@ -311,5 +320,6 @@ class StudentAssistant:
             print(d)
 
             return render(request,'coursepath.html',{'data':d})
+
 
 

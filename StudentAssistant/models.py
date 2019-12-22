@@ -109,10 +109,11 @@ class Student(models.Model):
         self.save()
 
 class LostandFound(models.Model):
-	"""
-	LostandFound class
-	Attributes: lost_id, finders_id, itemtype, loser_id, finder_contact_email, lost_item, status
-	"""
+    """
+    LostandFound class
+    Attributes: lost_id, finders_id, itemtype, loser_id, finder_contact_email, lost_item, status
+
+    """
     lost_id = models.AutoField(unique=True, primary_key= True)
     finders_id = models.IntegerField(null= False)
     itemtype = models.CharField(max_length=30)
@@ -125,7 +126,7 @@ class LostandFound(models.Model):
 
 
 class EvaluationScripts(models.Model):
-    #eval_id = models.AutoField(unique=True, primary_key=True)
+    eval_id = models.AutoField(unique=True, primary_key=True)
     faculty_name = models.CharField(max_length= 200)
     option1_input = models.CharField(max_length= 100)
     option2_input = models.CharField(max_length= 100)
@@ -137,7 +138,57 @@ class EvaluationScripts(models.Model):
     submitter_id = models.IntegerField()
 
 class Courses(models.Model):
-    pass
+
+    """
+    Courses class
+
+    courses database table 
+
+    Attributes: courseID, coursename, coursetitle, credits, prority,category, software, hardware, math, literature
+
+    """
+    courseid = models.AutoField(unique=True, primary_key=True)
+    coursename = models.CharField(max_length=5)
+    coursetitle = models.CharField(max_length= 100)
+    credits = models.FloatField()
+    priority = models.IntegerField()
+    category = models.CharField(max_length=6)
+    software = models.IntegerField(default=0, null=False)
+    hardware = models.IntegerField(default=0, null=False)
+    math = models.IntegerField(default=0, null=False)
+    literature = models.IntegerField(default=0, null=False)
+
+    def __str__(self):
+        return self.coursename
+
 
 class Grades(models.Model):
-    pass
+
+    """
+    Grades class
+
+    grades database table 
+
+    Attributes: grdsr1, grdpa, semnum, Student_id, Course_name
+
+    """
+    grdsrl = models.AutoField(unique=True,primary_key=True)
+    grdpa = models.FloatField(default=0.0)
+    grade = models.CharField(max_length=1, default='N')
+    semnum = models.IntegerField(default=0)
+    Student_id = models.IntegerField()
+    Course_name = models.CharField(max_length=5)
+
+
+
+class ComplainBox(models.Model):
+    """
+    ComplainBox Class
+
+    Attributes: Complain_number, Complaining_person, Complainer_email, message
+
+    """
+    Complain_number = models.AutoField(unique=True, primary_key=True)
+    Complaining_person = models.CharField(max_length=30)
+    Complainer_email = models.CharField(max_length=40)
+    message = models.CharField(max_length=300)
