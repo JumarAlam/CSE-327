@@ -1,4 +1,0 @@
-Django==2.1.4
-pyknow==1.7.0
-Jinja2==2.10
-sqlmap==1.2.12

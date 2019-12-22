@@ -15,14 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+#from . import views
 from .views  import StudentAssistant as sa
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', sa.index, name='landing'),
-    path('suggestion/', sa.courseadvise, name = 'suggested courses'),
+    #path('admin/', admin.site.urls),
+    #path('', views.index, name='landing'),
     path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
-	path('lostnfound/', sa.lostnfound, name='lost and found action'), #views are not added...
-    path('gradpath/', sa.showgradpath, name='shows Full graduation Path')
-]
+	path('lostnfound/', sa.lostnfound, name='lost and found action'),
 
+]
