@@ -433,6 +433,8 @@ class StudentAssistant:
 
             return render(request, 'retakes.html', {'retakables': s})
 
+    def about(request):
+        return render(request, 'about.html')
 
 
 
