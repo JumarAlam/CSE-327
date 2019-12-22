@@ -1,0 +1,19 @@
+body{
+	background-image: url("image1.jpg");
+	background-size: cover;
+	color: white;
+
+}
+.dropdown-menu {
+	background-color: black;
+	opacity: 0.8;
+	text-decoration-color: white;
+	text-shadow: currentColor;;
+
+}
+#downdrop{
+	background-color: black;
+	opacity: 0.8;
+
+
+}

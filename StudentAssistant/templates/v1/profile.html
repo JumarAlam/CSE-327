@@ -1,0 +1,13 @@
+{% extends "./includes/newnav.html" %}
+{% block content %}
+    <h1> Hello {{stinfo.fullname }} !</h1>
+    <h2> ID : {{stinfo.uni_id}}</h2>
+    <h2> Email : {{stinfo.email}}</h2>
+    <h2> CGPA : {{stinfo.cgpa}}</h2>
+    <h2> coreCGPA : {{stinfo.corecgpa}}</h2>
+    <h2> uniCGPA : {{stinfo.unicgpa}}</h2>
+    <h2> sepsCGPA : {{stinfo.sepscgpa}}</h2>
+    <h2> current semester : {{stinfo.semunmber}}</h2>
+
+
+{% endblock %}
