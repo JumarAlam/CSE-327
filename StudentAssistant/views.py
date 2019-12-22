@@ -41,8 +41,8 @@ class StudentAssistant:
             uid = request.session['uni_id']
             form = GradeForm(request.POST)
             if form.is_valid():
-                crsname= form.cleaned_data['coursename']
-                crsgrade = form.cleaned_data['coursegrade']
+                crsname= form.cleaned_data['courseName']
+                crsgrade = form.cleaned_data['courseGrade']
                 sem = form.cleaned_data['semester']
                 crsgrade = converter[crsgrade]
                 grdobj = Grades.objects.get(Student_id=uid, Course_name=crsname)

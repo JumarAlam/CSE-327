@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
         attrs={'type': 'password', 'class': "form-control", 'placeholder': 'password'}))
 
 
-class gradeForm(forms.Form):
+class GradeForm(forms.Form):
     """
 	GradeForm class
 	Attributes: courseName, courseGrade, semester
