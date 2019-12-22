@@ -1,4 +1,4 @@
-    
+
 from django.shortcuts import render
 #from .forms import *
 from .models import *
@@ -20,14 +20,14 @@ every method takes a http request object as an argument
 
 class StudentAssistant:
 
-	def gradecal(request): # Added by Jumar 
+    def gradecal(request): # Added by Jumar 
         if request.session.has_key('uni_id'):
             form = GradeForm()
             return render(request,"gradecalculate.html", {'form':form})
         else:
             return HttpResponseRedirect('/login')
-	
-	#updates the grades of students
+    
+    #updates the grades of students
     #calculates cgpa
 
     def gradecalaction(request):
@@ -56,26 +56,26 @@ class StudentAssistant:
 
                 return HttpResponseRedirect('/gradecal')
 
-	# added by Jumar upto this
+    # added by Jumar upto this
 
 
 
 
     def index(request):
-    '''
-    this will Render the home page
+        '''
+        this will Render the home page
 
-    return : render object , welcome.html
-    '''
+        return : render object , welcome.html
+        '''
         return HttpResponse("<h1>This thing is working properly</h1>")
 
 
     #generates facts & creates inference engine of prerequisites
    
     def courseadvise(request):
- 	'''
-    return : render object, courseadvisor.html
-    '''
+        '''
+        return : render object, courseadvisor.html
+        '''
         if request.session.has_key('uni_id'):
             l=[]  #list of courses he can take
             l.clear()
@@ -177,12 +177,12 @@ class StudentAssistant:
 
 
     def showgradpath(request):
-    '''
-    Shows full Graduation path as from the point of a students current situation
+        '''
+        Shows full Graduation path as from the point of a students current situation
 
-    return: render type, coursepath.html
+        return: render type, coursepath.html
 
-    '''
+        '''
         if request.session.has_key("uni_id"):
             lst = []
             i=1
