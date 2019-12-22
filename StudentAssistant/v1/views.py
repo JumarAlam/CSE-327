@@ -29,9 +29,6 @@ import math
 
 
 
-
-
-
 class Studentasist:
 
 
