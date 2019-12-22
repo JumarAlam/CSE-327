@@ -108,6 +108,34 @@ class Student(models.Model):
         print(self.semunmber)
         self.save()
 
+class LostandFound(models.Model):
+	"""
+	LostandFound class
+	Attributes: lost_id, finders_id, itemtype, loser_id, finder_contact_email, lost_item, status
+	"""
+    lost_id = models.AutoField(unique=True, primary_key= True)
+    finders_id = models.IntegerField(null= False)
+    itemtype = models.CharField(max_length=30)
+    loser_id = models.IntegerField(null=True, default=None)
+    finder_contact_email = models.CharField(max_length=40)
+    lost_item = models.CharField(max_length=400)
+    status = models.BooleanField(default=False)
+
+
+
+
+class EvaluationScripts(models.Model):
+    #eval_id = models.AutoField(unique=True, primary_key=True)
+    faculty_name = models.CharField(max_length= 200)
+    option1_input = models.CharField(max_length= 100)
+    option2_input = models.CharField(max_length= 100)
+    option3_input = models.CharField(max_length= 100)
+    option4_input = models.CharField(max_length= 100)
+    option5_input = models.CharField(max_length= 100)
+    option6_input = models.CharField(max_length= 100)
+    commentinput = models.CharField(max_length= 1000)
+    submitter_id = models.IntegerField()
+
 class Courses(models.Model):
     pass
 
