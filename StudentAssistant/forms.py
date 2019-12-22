@@ -78,3 +78,17 @@ class Evaluation(forms.Form):
     option6 = forms.ChoiceField(choices= options,label = 'The instructor was fair in grading exams, quizzes, assignments and provided timely feedback.',  widget= forms.RadioSelect(attrs={'placeholder':'option6'}))
 
     comment = forms.CharField(label= 'Comment', widget= forms.TextInput(attrs={'class': "form-control", 'placeholder': 'Extra commnets'}))
+
+
+''' inherit complaintForm from 
+    generating form 
+    '''
+
+
+class ComplaintForm(forms.Form):
+    fullname = forms.CharField(max_length=50, widget=forms.TextInput(
+        attrs={'class': "form-control"}), label='Full Name')
+    email = forms.CharField(max_length=50, widget=forms.TextInput(
+        attrs={'class': "form-control"}), label='Email Address')
+    comment = forms.CharField(max_length=1000, widget=forms.TextInput(
+        attrs={'class': "form-control"}), label='Comment')

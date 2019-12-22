@@ -1,0 +1,23 @@
+{% extends "./includes/newnav.html" %}
+
+{% block content %}
+
+	<div id="login-box">
+      <div class="center-box">
+        <h1> Complain Box</h1>
+          <form action="/complainaction/" method= "POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			   <button type="submit" class="btn btn-default">Submit</button>
+		  </form>
+        </div>
+
+        
+        </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

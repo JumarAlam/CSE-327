@@ -15,7 +15,7 @@ Including another URLconf
 from django.contrib import admin
 from .views import StudentAssistant as sa
 from django.urls import path
-
+'''
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -36,11 +36,45 @@ urlpatterns = [
     path('facultyevaluation/', sa.eval, name = 'facultyevaluation'),
     path('evalact/', sa.evalact, name = 'facultyevaluationactionlistener'),
 
-    # Nusher
     path('suggestion/', sa.courseadvise, name = 'suggested courses'),
-    path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
 
+    path('gradecal/', sa.gradecal, name='grade calcualtor'),
+    path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
     #Jumer 
+
     #path('lostnfound/', sa.lostnfound, name='lost and found action'), #views are not added...
     path('gradpath/', sa.showgradpath, name='shows Full graduation Path')
 ]
+
+'''
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', sa.index, name="index" ),
+    path('register/', sa.register, name= 'register'),
+    path('login/', sa.login, name= 'login'),
+    path('logact/', sa.loginaction, name = "loginaction"),
+    path('regact/', sa.registeraction, name = 'registeraction'),
+    path('profile/', sa.profile, name= 'userprofile'),
+    
+    path('gradecal/', sa.gradecal, name='grade calcualtor'),
+    path('gradecal2/', sa.gradecalaction, name='grade calcualtor action'),
+    path('gradhist/',sa.gradehistory, name='Grade History'),
+    path('suggestion/',sa.courseadvise, name='Course Advisor'),
+    path('grapath/', sa.showgradpath, name= 'Course Path'),
+    path('logout/', sa.logout, name = 'logout'),
+    path('retakes/', sa.retakelist, name= 'retake list'),
+
+    ###
+    path('complain/', sa.complain, name='complain box'),
+    path('complainaction/', sa.complainActionListener, name='complain box Action Listener'),
+    path('lostandfound/', sa.lostandfound, name = 'lost and found'),
+    path('lostandfoundaction/', sa.lostandfoundaction, name = 'lost and found'),
+
+    ###
+
+    path('facultyevaluation/', sa.eval, name = 'facultyevaluation'),
+    path('evalact/', sa.evalact, name = 'facultyevaluationactionlistener'),
+
+]
+

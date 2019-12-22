@@ -9,6 +9,7 @@ from django.contrib import sessions
 from .prerequisites import Prereq
 from .numofcourses import Numofcrs
 import math
+from .retakeengine import *
 '''
 generates Views
 every method takes a http request object as an argument
@@ -22,8 +23,16 @@ class StudentAssistant:
         else:
             return HttpResponseRedirect('/login')
     
+
     #updates the grades of students
     #calculates cgpa
+
+    def gradecal(request):
+        if request.session.has_key('uni_id'):
+            form = GradeForm()
+            return render(request,"gradecalculate.html", {'form':form})
+        else:
+            return HttpResponseRedirect('/login')
 
     def gradecalaction(request):    #Added By Jumar
         grdparam = {'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7, 'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0, 'F': 0.0}
@@ -139,7 +148,22 @@ class StudentAssistant:
         except:
             return HttpResponse("<h1> Could not logout for some reason</h1>")
         return HttpResponseRedirect('/login')
+
+    """
+    """
     
+    def gradehistory(request):
+        if request.session.has_key('uni_id'):
+            uid = request.session['uni_id']
+            grdobj = Grades.objects.filter(Student_id = uid)
+            d= []
+            for g in grdobj:
+                if(g.grade!= 'N'):
+                    d.append(g)
+
+            return render(request,'Gradehistory.html',{'gradedata': d})
+
+
     ################################################################################################
     
     ### faculty evaluation
@@ -153,7 +177,7 @@ class StudentAssistant:
             return render(request, 'eval.html', {'form': form})
         else:
             return HttpResponse('<h1>login required</h1>')
-        
+         
     def evalact(request):
             if request.session.has_key('uni_id'):
                 uid = request.session['uni_id']
@@ -263,7 +287,7 @@ class StudentAssistant:
 
             for m in t:
                 crs = Courses.objects.get(coursename=m)
-                if p >= crs.priority:
+                if p >= int(crs.priority):
                     p = crs.priority
             catprio = {'CORE':1,'SEPS':2,'UNI':3, 'CAPS':4, 'TRAIL':5, 'OPEN':6}
             for m1 in t:
@@ -321,6 +345,9 @@ class StudentAssistant:
 
             return render(request,'coursepath.html',{'data':d})
 
+
+    #Add docs
+
     def lostandfound(request):
     	if request.session.has_key("uni_id"):
             form = LostForm()
@@ -337,27 +364,74 @@ class StudentAssistant:
     	if request.session.has_key("uni_id"):
     		form = LostForm(request.POST)
     		if form.is_valid():
-    			convert_items = {1:'ID_Card', 2: 'Pen-Drive', 3:'Others'}
+    			convert_items = {"1":'ID_Card', "2": 'Pen-Drive', "3":'Others'}
     			itemtype = form.cleaned_data['itemtype']
     			description = form.cleaned_data['description']
     			converted_itemtype = convert_items[itemtype]
     			university_id =  request.session['uni_id']
     			studentObject = Student.objects.get(uni_id= university_id)
     			email = studentObject.email
+
     			try:
-    				loser_name = form.cleaned_data['loser_name']
-    			except Exception as e:
-    				loser_name = None
-    			try:
-    				loser_Id = form.cleaned_data['loser_name']
+    				loser_Id = form.cleaned_data['loser_id']
     			except Exception as e:
     				loser_Id = None
 
-    			lost_object = LostandFound(finders_id=university_id, itemtype=converted_itemtype, loser_id=loser_id, finder_contact_email=email,lost_item='description', status=False)
+    			lost_object = LostandFound(finders_id=university_id, itemtype=converted_itemtype, loser_id=loser_Id, finder_contact_email=email,lost_item=description, status=False)
     			lost_object.save()
                 
     			return HttpResponseRedirect('/lostandfound')
     			
+#################SHAHRIAR FILES #########################
+
+    # creating inference engine of pre req
+
+    ''' complain box requests forms and views.
+    '''
+
+    def complain(request):
+        form = ComplaintForm()  # generating form from forms.py
+        return render(request, 'complain.html', {'form': form})
+
+    '''
+        get form and send the redirects to complain page
+    '''
+
+    def complainActionListener(request):
+        form = ComplaintForm(request.POST)  # CF class from form file
+        if form.is_valid():  # validation check
+            fullname = form.cleaned_data['fullname']
+            email = form.cleaned_data['email']
+            comment = form.cleaned_data['comment']
+
+            complainObject = ComplainBox(
+                Complaining_person=fullname, Complainer_email=email, message=comment)
+            complainObject.save()
+        return HttpResponseRedirect('/complain')
+    '''
+    extract the retake list from retakes inference engine and
+    '''
+
+    def retakelist(request):
+        if request.session.has_key("uni_id"):  # session check
+            stdid = request.session['uni_id']
+            rtk = Retakecrs()
+            rtk.resetengine()
+            grd = Grades.objects.filter(Student_id=stdid)
+            for g in grd:
+                cr = Courses.objects.get(coursename=g.Course_name)
+                rtk.setfactdatalist([g.Course_name, g.grade, cr.category])
+            rtk.definefacts()
+            l = []
+            s = []
+            s.clear()
+
+            l = rtk.runes()
+            for d in l:
+                s.append(d)
+            l.clear()
+
+            return render(request, 'retakes.html', {'retakables': s})
 
 
 
