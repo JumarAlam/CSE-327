@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title> Student Assistant</title>
+  <link rel="stylesheet" type="text/css" href="{% static '/CSS/bootstrap.css' %}">
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static '/CSS/newnav.css' %}">
+  
+  <body>
+    
+    <div class= "container">
+    <div id="downdrop">
+    <nav class="navbar navbar-inverse">
+
+      <div class ="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+          <span class="sr-only"> Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">Student Assistant</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-nav-demo">
+      <div class="nav navbar-nav"> 
+        <li> <a href="/complain/"> Complain Box </a></li>
+        
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Student Info
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p> <a class="dropdown-item" href="/profile/"> Profile </a></p>
+				<p> <a class="dropdown-item" href="/gradecal/"> CGPA calculator </a></p>
+                <p> <a class="dropdown-item" href="/gradhist/"> Grade history </a></p>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Course advisor
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p> <a class="dropdown-item" href="/cd/"> Course  Advisor</a></p>
+				<p> <a class="dropdown-item" href="/cp/"> Full course Path </a></p>
+        <p> <a class="dropdown-item" href="/retakes/"> Retakes </a></p>
+        </div>
+      </li> 
+      <li> <a href="/lostandfound/"> Lost And Found </a></li>
+
+        
+      </div>
+      <div class="nav navbar-nav navbar-right">
+        
+        <li><a href="/logout/"> Logout</a></li>
+      </div>
+      </div>
+
+    </nav>
+  </div>
+
+    {% block content %}
+    {% endblock %}
+      </div>
+  </body>
+</head>
+
+
+
+</html>
