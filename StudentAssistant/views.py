@@ -321,5 +321,49 @@ class StudentAssistant:
 
             return render(request,'coursepath.html',{'data':d})
 
+    def lostandfound(request):
+    	if request.session.has_key("uni_id"):
+            form = LostForm()
+            lostlist = LostandFound.objects.filter(status = False)
+            return render(request, 'lostnfound.html', {'form':form, 'lostinfo': lostlist})
+
+
+    	else:
+    		return HttpResponse('<h1> you have to login to report lost and found</h1>')
+
+    	
+
+    def lostandfoundaction(request):
+    	if request.session.has_key("uni_id"):
+    		form = LostForm(request.POST)
+    		if form.is_valid():
+    			convert_items = {1:'ID_Card', 2: 'Pen-Drive', 3:'Others'}
+    			itemtype = form.cleaned_data['itemtype']
+    			description = form.cleaned_data['description']
+    			converted_itemtype = convert_items[itemtype]
+    			university_id =  request.session['uni_id']
+    			studentObject = Student.objects.get(uni_id= university_id)
+    			email = studentObject.email
+    			try:
+    				loser_name = form.cleaned_data['loser_name']
+    			except Exception as e:
+    				loser_name = None
+    			try:
+    				loser_Id = form.cleaned_data['loser_name']
+    			except Exception as e:
+    				loser_Id = None
+
+    			lost_object = LostandFound(finders_id=university_id, itemtype=converted_itemtype, loser_id=loser_id, finder_contact_email=email,lost_item='description', status=False)
+    			lost_object.save()
+                
+    			return HttpResponseRedirect('/lostandfound')
+    			
+
+
+
+
+
+ 
+
 
 
