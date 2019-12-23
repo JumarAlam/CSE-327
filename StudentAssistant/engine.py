@@ -1,7 +1,15 @@
-from .prerequisites import *
+try:
+    from .prerequisites import *
+except Exception:
+    from prerequisites import *
 #from .retakes import *
 from pyknow import *
-from .models import Courses, Student
+try:
+    from .models import Courses, Student
+except Exception:
+    from models import Courses, Student
+
+
 '''
 Inference engine class for the Expert System AI
 * creates Inference engine for prerequisite knowledge base
