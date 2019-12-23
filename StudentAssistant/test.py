@@ -17,7 +17,7 @@ class LostAndFoundTestCase(TestCase):  # JumarAlam
         LostandFound.objects.create(finders_id=1234, itemtype="id_card", loser_id="4321",
                                     finder_contact_email="abcd@gmail.com", lost_item="Lost my ID card")
         testJumar = LostandFound.objects.get(finders_id=1234)
-        self.assertEqual(testJumar.loser_id, "4321")
+        self.assertEqual(testJumar.loser_id, 4321)
 
 
 class ComplaintTestcase(TestCase):  # shariar
@@ -26,3 +26,11 @@ class ComplaintTestcase(TestCase):  # shariar
             Complaining_person="something", message="something", Complainer_email="user@test.com")
         t1 = ComplainBox.objects.get(Complainer_email="user@test.com")
         self.assertEqual(t1.Complaining_person, "something")
+
+class EvaluationTestCase(TestCase): #Tanjeeb
+    def testing(self):
+        EvaluationScripts.objects.create(submitter_id = 345, faculty_name = "abc", option1_input = "Agree", option2_input = "Neutral", option3_input = "Agree", option4_input = "Neutral", option5_input = "Agree", option6_input = "Neutral")
+        testTanjeeb = EvaluationScripts.objects.get(faculty_name = "abc")
+        self.assertEqual(testTanjeeb.option3_input, "Agree")
+
+
