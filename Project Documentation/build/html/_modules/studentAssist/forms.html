@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>studentAssist.forms &#8212; Math API 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for studentAssist.forms</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
+
+<div class="viewcode-block" id="LoginForm"><a class="viewcode-back" href="../../index.html#studentAssist.forms.LoginForm">[docs]</a><span class="k">class</span> <span class="nc">LoginForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	LoginForm class</span>
+<span class="sd">	Attributes: user_id, password</span>
+<span class="sd">	This class takes the user_id and password from frontend form and pass them to models</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;University ID&#39;</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;University ID&quot;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">}))</span></div>
+
+
+<div class="viewcode-block" id="GradeForm"><a class="viewcode-back" href="../../index.html#studentAssist.forms.GradeForm">[docs]</a><span class="k">class</span> <span class="nc">GradeForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	GradeForm class</span>
+<span class="sd">	Attributes: courseName, courseGrade, semester</span>
+<span class="sd">	This class takes the courseName, courseGrade and semester from frontend form. After calculating the grades in models it passes the data to database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;A-&#39;</span><span class="p">),(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;B+&#39;</span><span class="p">),(</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">),(</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;B-&#39;</span><span class="p">),(</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;C+&#39;</span><span class="p">),(</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">),(</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;C-&#39;</span><span class="p">),(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="s1">&#39;D+&#39;</span><span class="p">),(</span><span class="s1">&#39;9&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span> <span class="p">]</span>
+    <span class="n">courseName</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;text&#39;</span><span class="p">,</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Course Name&#39;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Course&#39;</span><span class="p">)</span>
+    <span class="n">courseGrade</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">c</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Grades&#39;</span><span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Course Grade&#39;</span><span class="p">}))</span>
+    <span class="n">semester</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Semester number&#39;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Semester&#39;</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="LostForm"><a class="viewcode-back" href="../../index.html#studentAssist.forms.LostForm">[docs]</a><span class="k">class</span> <span class="nc">LostForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	LostForm class</span>
+<span class="sd">	Attributes: item, itemtype, loser_id, description, contactInfo</span>
+<span class="sd">	This class takes the citem, itemtype, loser_id, description and contactInfo from frontend form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;ID_Card&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;Pen-Drive&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;others&#39;</span><span class="p">)]</span>
+    <span class="n">itemtype</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Item&#39;</span> <span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Item&#39;</span><span class="p">}))</span>
+    <span class="n">loser_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Name(if available)&#39;</span> <span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Name&#39;</span><span class="p">}))</span>
+    <span class="n">loser_id</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Id(if available)&#39;</span> <span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;ID&#39;</span><span class="p">}))</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Comment&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RegistrationForm"><a class="viewcode-back" href="../../index.html#studentAssist.forms.RegistrationForm">[docs]</a><span class="k">class</span> <span class="nc">RegistrationForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    RegistrationForm class</span>
+<span class="sd">    Attributes: user_id, fullname, email, password, confirm_password</span>
+<span class="sd">    This class takes user ID, fullname, Email, Password from frontend form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;University ID&#39;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;University ID&quot;</span><span class="p">)</span>
+    <span class="n">fullname</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;text&#39;</span><span class="p">,</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Fullname&#39;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fullname&quot;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;text&#39;</span><span class="p">,</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;Email ID&#39;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Email Address&quot;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;password&#39;</span><span class="p">,</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;password&#39;</span><span class="p">}))</span>
+    <span class="n">confirm_password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;password&#39;</span><span class="p">,</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;password&#39;</span><span class="p">}))</span></div>
+
+
+        
+<div class="viewcode-block" id="Evaluation"><a class="viewcode-back" href="../../index.html#studentAssist.forms.Evaluation">[docs]</a><span class="k">class</span> <span class="nc">Evaluation</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluation class</span>
+<span class="sd">    Attributes: facultyname, option1, option2, option3,option4, option5, option6, comment </span>
+<span class="sd">    This class takes facult evaluation data from frontend form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;Agree&#39;</span><span class="p">),(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;Disagree&#39;</span><span class="p">))</span>
+
+    <span class="n">facultyname</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;faculty name&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;form-control&quot;</span><span class="p">,</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;facultyname&#39;</span><span class="p">}))</span>
+    <span class="n">option1</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The Instructor was adequate prepared for class&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option1&#39;</span><span class="p">}))</span>
+    <span class="n">option2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The Instructor began and ended class on time, and used class time effectively&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option2&#39;</span><span class="p">}))</span>
+    <span class="n">option3</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The instructor</span><span class="se">\&#39;</span><span class="s1">s teaching method was effective, adn sessions were clear and understandable.&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option3&#39;</span><span class="p">}))</span>
+    <span class="n">option4</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The instructor was available during office hours and was helpful.&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option4&#39;</span><span class="p">}))</span>
+    <span class="n">option5</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The instructor had good command over the subject matter of the course.&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option5&#39;</span><span class="p">}))</span>
+    <span class="n">option6</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span> <span class="n">options</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;The instructor was fair in grading exams, quizzes, assignments and provided timely feedback.&#39;</span><span class="p">,</span>  <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placeholder&#39;</span><span class="p">:</span><span class="s1">&#39;option6&#39;</span><span class="p">}))</span>
+
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span> <span class="s1">&#39;Comment&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Extra commnets&#39;</span><span class="p">}))</span></div>
+
+
+<span class="sd">&#39;&#39;&#39; inherit complaintForm from </span>
+<span class="sd">    generating form </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">ComplaintForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">fullname</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Full Name&#39;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Email Address&#39;</span><span class="p">)</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Comment&#39;</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jumar Alam.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
