@@ -1,0 +1,140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Student Assistant’s documentation! &#8212; Math API 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-student-assistant-s-documentation">
+<h1>Welcome to Student Assistant’s documentation!<a class="headerlink" href="#welcome-to-student-assistant-s-documentation" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-studentAssist.forms"></span><dl class="class">
+<dt id="studentAssist.forms.Evaluation">
+<em class="property">class </em><code class="descclassname">studentAssist.forms.</code><code class="descname">Evaluation</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/studentAssist/forms.html#Evaluation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#studentAssist.forms.Evaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluation class
+Attributes: facultyname, option1, option2, option3,option4, option5, option6, comment 
+This class takes facult evaluation data from frontend form.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="studentAssist.forms.GradeForm">
+<em class="property">class </em><code class="descclassname">studentAssist.forms.</code><code class="descname">GradeForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/studentAssist/forms.html#GradeForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#studentAssist.forms.GradeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>GradeForm class
+Attributes: courseName, courseGrade, semester
+This class takes the courseName, courseGrade and semester from frontend form. After calculating the grades in models it passes the data to database.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="studentAssist.forms.LoginForm">
+<em class="property">class </em><code class="descclassname">studentAssist.forms.</code><code class="descname">LoginForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/studentAssist/forms.html#LoginForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#studentAssist.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>LoginForm class
+Attributes: user_id, password
+This class takes the user_id and password from frontend form and pass them to models</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="studentAssist.forms.LostForm">
+<em class="property">class </em><code class="descclassname">studentAssist.forms.</code><code class="descname">LostForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/studentAssist/forms.html#LostForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#studentAssist.forms.LostForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>LostForm class
+Attributes: item, itemtype, loser_id, description, contactInfo
+This class takes the citem, itemtype, loser_id, description and contactInfo from frontend form.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="studentAssist.forms.RegistrationForm">
+<em class="property">class </em><code class="descclassname">studentAssist.forms.</code><code class="descname">RegistrationForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/studentAssist/forms.html#RegistrationForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#studentAssist.forms.RegistrationForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>RegistrationForm class
+Attributes: user_id, fullname, email, password, confirm_password
+This class takes user ID, fullname, Email, Password from frontend form.</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="student-assistant">
+<h1>Student Assistant –<a class="headerlink" href="#student-assistant" title="Permalink to this headline">¶</a></h1>
+<p>This is something I want to say that is not in the docstring.</p>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jumar Alam.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
