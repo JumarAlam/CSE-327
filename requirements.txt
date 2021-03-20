@@ -1,5 +1,5 @@
 Django==2.1.4
 selenium
 coverage
-Jinja2==2.10
+Jinja2==2.11.3
 sqlmap==1.2.12
